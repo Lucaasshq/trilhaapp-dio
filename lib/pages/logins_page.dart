@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String email = '';
   String senha = '';
+  bool isObscureText = true;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -67,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                         Expanded(
                           flex: 3,
                           child: TextField(
-                            onChanged: (value) {
+                            onChanged: (String value) {
                               email = value;
                             },
                             style: const TextStyle(color: Colors.white),
@@ -101,28 +102,38 @@ class _LoginPageState extends State<LoginPage> {
                       children: [
                         Expanded(
                           child: TextField(
-                            onChanged: (value) {
+                            obscureText: isObscureText,
+                            onChanged: (String value) {
                               senha = value;
                             },
                             style: const TextStyle(color: Colors.white),
-                            decoration: const InputDecoration(
-                              enabledBorder: UnderlineInputBorder(
+                            decoration: InputDecoration(
+                              enabledBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.purple),
                               ),
-                              focusedBorder: UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.purple),
                               ),
                               hintText: 'Senha',
-                              hintStyle: TextStyle(
+                              hintStyle: const TextStyle(
                                 color: Colors.white,
                               ),
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.lock,
                                 color: Colors.purple,
                               ),
-                              suffixIcon: Icon(
-                                Icons.visibility,
-                                color: Colors.purple,
+                              suffixIcon: InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    isObscureText = !isObscureText;
+                                  });
+                                },
+                                child: Icon(
+                                  isObscureText
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: Colors.purple,
+                                ),
                               ),
                             ),
                           ),
