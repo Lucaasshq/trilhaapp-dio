@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,8 +9,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String email = '';
-  String senha = '';
+  TextEditingController emailController =
+      TextEditingController(text: "email@gmail.com");
+  TextEditingController senhaController = TextEditingController(text: "123");
   bool isObscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -68,9 +70,8 @@ class _LoginPageState extends State<LoginPage> {
                         Expanded(
                           flex: 3,
                           child: TextField(
-                            onChanged: (String value) {
-                              email = value;
-                            },
+                            controller: emailController,
+                            onChanged: (value) => debugPrint(value),
                             style: const TextStyle(color: Colors.white),
                             decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
@@ -103,9 +104,8 @@ class _LoginPageState extends State<LoginPage> {
                         Expanded(
                           child: TextField(
                             obscureText: isObscureText,
-                            onChanged: (String value) {
-                              senha = value;
-                            },
+                            controller: senhaController,
+                            onChanged: (value) => debugPrint(value),
                             style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               enabledBorder: const UnderlineInputBorder(
@@ -150,9 +150,26 @@ class _LoginPageState extends State<LoginPage> {
                     child: SizedBox(
                       width: double.infinity,
                       child: TextButton(
-                        onPressed: () {
-                          debugPrint(email);
-                          debugPrint(senha);
+                        onPressed: () => {
+                          if (emailController.text.trim() ==
+                                  "email@gmail.com" &&
+                              // ignore: unrelated_type_equality_checks
+                              senhaController.text.trim() == "123")
+                            {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Login efetuado com sucesso'),
+                                ),
+                              ),
+                            }
+                          else
+                            {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Email ou senha incorreto!'),
+                                ),
+                              )
+                            }
                         },
                         style: ButtonStyle(
                             shape: MaterialStatePropertyAll(
