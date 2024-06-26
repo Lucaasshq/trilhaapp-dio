@@ -41,7 +41,6 @@ class _MainPageState extends State<MainPage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => const DadosCadastrais(
-                          dados: ["nome", "Endereço"],
                         ),
                       ),
                     )
@@ -87,9 +86,7 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             BottomNavigationBar(
-                onTap: (value) {
-                  controller.jumpToPage(value);
-                },
+                onTap: (value) {controller.jumpToPage(value);},
                 currentIndex: posicaoPagina,
                 items: const [
                   BottomNavigationBarItem(
