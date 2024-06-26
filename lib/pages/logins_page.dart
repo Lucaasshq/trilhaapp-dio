@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:trilhaapp/pages/main_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -156,11 +157,12 @@ class _LoginPageState extends State<LoginPage> {
                               // ignore: unrelated_type_equality_checks
                               senhaController.text.trim() == "123")
                             {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Login efetuado com sucesso'),
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const MainPage(),
                                 ),
-                              ),
+                              )
                             }
                           else
                             {

@@ -9,9 +9,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          useMaterial3: false,
-          primarySwatch: Colors.red,
-          textTheme: GoogleFonts.robotoTextTheme()),
+        useMaterial3: true,
+        textTheme: GoogleFonts.robotoTextTheme(),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.deepPurple[400],
+          titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       home: const LoginPage(),
     );
   }
