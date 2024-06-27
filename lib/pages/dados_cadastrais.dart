@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/pages/service/repositories/linguagens_repository.dart';
+import 'package:trilhaapp/pages/service/repositories/nivel_repository.dart';
+import 'package:trilhaapp/shared/widgets/text_label.dart';
 
 class DadosCadastrais extends StatefulWidget {
   const DadosCadastrais({super.key});
@@ -8,35 +11,39 @@ class DadosCadastrais extends StatefulWidget {
 }
 
 class _DadosCadastraisState extends State<DadosCadastrais> {
+  TextEditingController nomeController = TextEditingController(text: '');
+  TextEditingController dataNascimentoController =
+      TextEditingController(text: '');
+  DateTime? dataNascimento;
+
+  NivelRepository niveisRepository = NivelRepository();
+  LinguagensRepository linguagensRepository = LinguagensRepository();
+  List<String> niveis = [];
+  List<String> linguagens = [];
+  var nivelSelecionado = "";
+  var linguagensSelecionadas = [];
+
+  void initState() {
+    niveis = niveisRepository.retornarNiveis();
+    linguagens = linguagensRepository.retornarLinguagens();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController nomeController = TextEditingController(text: '');
-    TextEditingController dataNascimentoController =
-        TextEditingController(text: '');
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Meus Dados'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
-            const Text(
-              'Nome',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            const TextLabel(texto: 'Nome'),
             TextField(
               controller: nomeController,
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text('Data de nascimento'),
+            const TextLabel(texto: 'Data de nascimento'),
             TextField(
               controller: dataNascimentoController,
               readOnly: true,
@@ -47,12 +54,50 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
                   firstDate: DateTime(1900, 5, 20),
                   lastDate: DateTime(2025, 10, 23),
                 );
-                print(data);
+                if (data != null) {
+                  dataNascimentoController.text = data.toString();
+                  dataNascimento = data;
+                }
               },
+            ),
+            const TextLabel(texto: 'Nivel de experiência'),
+            Column(
+                children: niveis
+                    .map(
+                      (nivel) => RadioListTile(
+                        dense: true,
+                        title: Text(nivel.toString()),
+                        selected: nivelSelecionado == nivel,
+                        value: nivel.toString(),
+                        groupValue: nivelSelecionado,
+                        onChanged: (value) {
+                          setState(() {
+                            nivelSelecionado = value.toString();
+                          });
+                          print(nivelSelecionado);
+                        },
+                      ),
+                    )
+                    .toList()),
+            const TextLabel(texto: 'Linguagem preferidas'),
+            Column(
+              children: linguagens
+                  .map((linguagem) => CheckboxListTile(
+                      title: Text(linguagem),
+                      value: linguagensSelecionadas.contains(linguagem),
+                      onChanged: (bool? value) {
+                        if (value!) {
+                          linguagensSelecionadas.add(linguagem);
+                        } else
+                          linguagensSelecionadas.remove(linguagem);
+                        setState(() {});
+                      }))
+                  .toList(),
             ),
             TextButton(
               onPressed: () {
-                debugPrint(nomeController.text);
+                print(nomeController.text);
+                print(dataNascimento);
               },
               child: const Text('Salvar'),
             )
