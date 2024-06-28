@@ -20,6 +20,10 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          //? Cor do icone do Drawer
+          iconTheme: const IconThemeData(
+            color: Colors.white,
+          ),
           title: const Text('Main Page'),
         ),
         drawer: const CustomDrawer(),
