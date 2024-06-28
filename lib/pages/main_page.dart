@@ -3,6 +3,7 @@ import 'package:trilhaapp/pages/dados_cadastrais.dart';
 import 'package:trilhaapp/pages/page_1.dart';
 import 'package:trilhaapp/pages/page_2.dart';
 import 'package:trilhaapp/pages/page_3.dart';
+import 'package:trilhaapp/shared/widgets/custon_drawer.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -21,53 +22,7 @@ class _MainPageState extends State<MainPage> {
         appBar: AppBar(
           title: const Text('Main Page'),
         ),
-        drawer: Drawer(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text('Dados cadastráis'),
-                  ),
-                  onTap: () => {
-                    //? Fechar tela anterior
-                    Navigator.pop(context),
-                    //? Abri nova tela de Dados cadastrais
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DadosCadastrais(
-                        ),
-                      ),
-                    )
-                  },
-                ),
-                const Divider(),
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text('Termos de uso e privacidade'),
-                  ),
-                  onTap: () => {},
-                ),
-                const Divider(),
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text('Configurações'),
-                  ),
-                  onTap: () => {},
-                ),
-              ],
-            ),
-          ),
-        ),
+        drawer: const CustomDrawer(),
         body: Column(
           children: [
             Expanded(
@@ -86,7 +41,9 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
             BottomNavigationBar(
-                onTap: (value) {controller.jumpToPage(value);},
+                onTap: (value) {
+                  controller.jumpToPage(value);
+                },
                 currentIndex: posicaoPagina,
                 items: const [
                   BottomNavigationBarItem(
