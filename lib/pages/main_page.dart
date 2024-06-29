@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/pages/dados_cadastrais.dart';
-import 'package:trilhaapp/pages/page_1.dart';
+import 'package:trilhaapp/pages/card_page.dart';
 import 'package:trilhaapp/pages/page_2.dart';
 import 'package:trilhaapp/pages/page_3.dart';
 import 'package:trilhaapp/shared/widgets/custon_drawer.dart';
@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
                   });
                 },
                 children: const [
-                  Page1Pagina(),
+                  CardPage(),
                   Page2Pagina(),
                   Page3Pagina(),
                 ],

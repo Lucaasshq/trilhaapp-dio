@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.robotoTextTheme(),
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.deepPurple[400],
+          backgroundColor: Colors.red[300],
           titleTextStyle: const TextStyle(
             color: Colors.white,
             fontSize: 25,
