@@ -7,23 +7,23 @@ class Tarefa {
   bool _concluido = false;
   Tarefa(this._descricao, this._concluido);
 
-  String getId() {
-    return _id;
-  }
+  String get id => _id;
 
-  String getDescricao() {
-    return _descricao;
-  }
+  // ignore: unnecessary_getters_setters
+  String get descricao => _descricao;
 
-  void setDescricao(String descricao) {
+  // ignore: avoid_return_types_on_setters
+  void set descricao(String descricao) {
     _descricao = descricao;
   }
 
-  bool getConcluido() {
-    return _concluido;
-  }
+  // ignore: unnecessary_getters_setters
+  bool get concluido => _concluido;
 
-  void setConcluido(bool concluido) {
+  // ignore: avoid_return_types_on_setters
+  void set concluido(bool concluido) {
     _concluido = concluido;
   }
+
+  
 }

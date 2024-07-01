@@ -22,7 +22,6 @@ class _ListViewPageState extends State<ListViewPage> {
           ),
           trailing: PopupMenuButton<String>(
             onSelected: (menu) {
-              print(menu);
             },
             itemBuilder: (context) {
               return <PopupMenuEntry<String>>[

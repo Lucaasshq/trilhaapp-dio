@@ -13,6 +13,7 @@ class _TarefaPageState extends State<TarefaPage> {
   var tarefaRepository = TarefaRepository();
   var _tarefas = <Tarefa>[];
   TextEditingController descricaoController = TextEditingController();
+  var apenasNaoConcluidos = false;
 
   @override
   void initState() {
@@ -21,7 +22,12 @@ class _TarefaPageState extends State<TarefaPage> {
   }
 
   void obterTarefas() async {
-    _tarefas = await tarefaRepository.listaTarefas();
+    if (apenasNaoConcluidos) {
+      _tarefas = await tarefaRepository.listarNaoConcluidas();
+    } else {
+      _tarefas = await tarefaRepository.listaTarefas();
+    }
+
     setState(() {});
   }
 
@@ -54,6 +60,7 @@ class _TarefaPageState extends State<TarefaPage> {
                         onPressed: () async {
                           await tarefaRepository.adicionar(
                               Tarefa(descricaoController.text, false));
+                          // ignore: use_build_context_synchronously
                           Navigator.pop(context);
                           setState(() {});
                         },
@@ -66,20 +73,47 @@ class _TarefaPageState extends State<TarefaPage> {
         ),
         body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: ListView.builder(
-            itemCount: _tarefas.length,
-            itemBuilder: (context, index) {
-              var tarefa = _tarefas[index];
-              return ListTile(
-                title: Text(tarefa.getDescricao()),
-                trailing: Switch(
-                    value: tarefa.getConcluido(),
-                    onChanged: (bool value) async {
-                      tarefaRepository.alterar(tarefa.getId(), value);
-                      obterTarefas();
-                    }),
-              );
-            },
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Filtrar não concludias'),
+                  Switch(
+                      value: apenasNaoConcluidos,
+                      onChanged: (bool value) {
+                        apenasNaoConcluidos = value;
+                        obterTarefas();
+                        setState(() {});
+                      })
+                ],
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _tarefas.length,
+                  itemBuilder: (context, index) {
+                    var tarefa = _tarefas[index];
+                    return Dismissible(
+                      key: Key(tarefa.id),
+                      onDismissed: (DismissDirection direction) async {
+                        await tarefaRepository.remove(tarefa.id);
+                        obterTarefas();
+                        
+                      },
+                      child: ListTile(
+                        title: Text(tarefa.descricao),
+                        trailing: Switch(
+                            value: tarefa.concluido,
+                            onChanged: (bool value) async {
+                              tarefaRepository.alterar(tarefa.id, value);
+                              obterTarefas();
+                            }),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ));
   }

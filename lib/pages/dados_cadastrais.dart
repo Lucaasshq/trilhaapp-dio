@@ -92,7 +92,6 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
                                 setState(() {
                                   nivelSelecionado = value.toString();
                                 });
-                                print(nivelSelecionado);
                               },
                             ),
                           )
@@ -121,7 +120,6 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
                     onChanged: (value) {
                       setState(() {
                         tempoExperiencia = int.parse(value.toString());
-                        print(tempoExperiencia);
                       });
                     },
                   ),
@@ -133,7 +131,6 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
                       max: 10000,
                       value: salarioEscolhido,
                       onChanged: (value) {
-                        print(value);
                         setState(() {
                           salarioEscolhido = value;
                         });
