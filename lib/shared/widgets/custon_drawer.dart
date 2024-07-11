@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/pages/configuracoes_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais.dart';
 import 'package:trilhaapp/pages/logins_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorio_page.dart';
@@ -134,7 +135,13 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: () => {},
+            onTap: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ConfiguracoesPage(),
+                  ))
+            },
           ),
           const Divider(),
           InkWell(
