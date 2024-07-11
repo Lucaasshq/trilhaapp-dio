@@ -85,6 +85,8 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                   }),
               TextButton(
                   onPressed: () async {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    //! comando para fechar o teclado
                     try {
                       await storage.setDouble(
                           CHAVE_ALTURA, double.parse(alturaController.text));
@@ -94,7 +96,7 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                         builder: (_) {
                           return AlertDialog(
                             title: const Text('erro'),
-                            content: const Text('Atura Invalida'),
+                            content: const Text('Altura Invalida'),
                             actions: [
                               TextButton(
                                   onPressed: () => Navigator.pop(context),
