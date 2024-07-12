@@ -54,6 +54,17 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
     setState(() {
       nomeController.text =
           storage.getString(CHAVE_DADOS_CADASTRAIS_NOME) ?? '';
+      dataNascimentoController.text =
+          storage.getString(CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO) ?? '';
+      dataNascimento = DateTime.parse(dataNascimentoController.text);
+      nivelSelecionado =
+          storage.getString(CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA) ?? '';
+      linguagensSelecionadas =
+          storage.getStringList(CHAVE_DADOS_CADASTRAIS_LINGUAGEM) ?? [];
+      tempoExperiencia =
+          storage.getInt(CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA) ?? 0;
+      salarioEscolhido =
+          storage.getDouble(CHAVE_DADOS_CADASTRAIS_SALARIO) ?? 0.0;
     });
   }
 
