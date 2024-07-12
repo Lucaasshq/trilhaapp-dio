@@ -1,4 +1,7 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trilhaapp/pages/service/repositories/linguagens_repository.dart';
 import 'package:trilhaapp/pages/service/repositories/nivel_repository.dart';
 import 'package:trilhaapp/shared/widgets/text_label.dart';
@@ -24,7 +27,18 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
   var linguagensSelecionadas = [];
   double salarioEscolhido = 0.0;
   int tempoExperiencia = 0;
-
+  late SharedPreferences storage;
+  final String CHAVE_DADOS_CADASTRAIS_NOME = 'CHAVE_DADOS_CADASTRAIS_NOME';
+  final String CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO =
+      'CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO';
+  final String CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA =
+      'CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA';
+  final String CHAVE_DADOS_CADASTRAIS_LINGUAGEM =
+      'CHAVE_DADOS_CADASTRAIS_LINGUAGEM';
+  final String CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA =
+      'CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA';
+  final String CHAVE_DADOS_CADASTRAIS_SALARIO =
+      'CHAVE_DADOS_CADASTRAIS_SALARIO';
   bool salvando = false;
 
   @override
@@ -32,6 +46,11 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
     niveis = niveisRepository.retornarNiveis();
     linguagens = linguagensRepository.retornarLinguagens();
     super.initState();
+    carregarDados();
+  }
+
+  carregarDados() async {
+    storage = await SharedPreferences.getInstance();
   }
 
   List<DropdownMenuItem> returnItens(int quantidadeMaxima) {
@@ -185,6 +204,13 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
                         ));
                         return;
                       }
+
+                      storage.setString(
+                          CHAVE_DADOS_CADASTRAIS_NOME, nomeController.text);
+                      storage.setString(CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO,
+                          dataNascimentoController.text);
+                      storage.set
+
                       setState(() {
                         salvando = true;
                       });
