@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trilhaapp/pages/service/repositories/linguagens_repository.dart';
 import 'package:trilhaapp/pages/service/repositories/nivel_repository.dart';
+import 'package:trilhaapp/services/app_storage.dart';
 import 'package:trilhaapp/shared/widgets/text_label.dart';
 
 class DadosCadastrais extends StatefulWidget {
@@ -27,7 +28,7 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
   List<String> linguagensSelecionadas = [];
   double salarioEscolhido = 0.0;
   int tempoExperiencia = 0;
-  late SharedPreferences storage;
+  AppStorageSevice storage = AppStorageSevice();
   final String CHAVE_DADOS_CADASTRAIS_NOME = 'CHAVE_DADOS_CADASTRAIS_NOME';
   final String CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO =
       'CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO';
@@ -50,10 +51,9 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
   }
 
   carregarDados() async {
-    storage = await SharedPreferences.getInstance();
-    setState(() {
-      nomeController.text =
-          storage.getString(CHAVE_DADOS_CADASTRAIS_NOME) ?? '';
+    
+    setState(() async {
+      nomeController.text = await storage.getDadosCadastraisNome();
       dataNascimentoController.text =
           storage.getString(CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO) ?? '';
       dataNascimento = DateTime.parse(dataNascimentoController.text);
