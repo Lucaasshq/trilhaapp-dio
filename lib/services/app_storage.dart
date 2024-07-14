@@ -155,8 +155,8 @@ class AppStorageSevice {
 
   ////////////////////////////////////////////////////////////////////////////////
 
-  Future<void> setConfiguracoesAltura(double nome) async {
-    await _setDouble(STORAGE_CHAVES.CHAVE_ALTURA.toString(), nome);
+  Future<void> setConfiguracoesAltura(double altura) async {
+    await _setDouble(STORAGE_CHAVES.CHAVE_ALTURA.toString(), altura);
   }
 
   Future<double> getConfiguracoesAltura() async {
