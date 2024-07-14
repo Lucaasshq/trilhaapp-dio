@@ -14,9 +14,9 @@ class DadosCadastrais extends StatefulWidget {
 }
 
 class _DadosCadastraisState extends State<DadosCadastrais> {
+  var sdfsdlfmsdlkfmssgjkfnkgsjdfdfdfdfdfddfdfdfdfdfdfdfdfdfdfdfffffdffdfdf = false;
   TextEditingController nomeController = TextEditingController(text: '');
-  TextEditingController dataNascimentoController =
-      TextEditingController(text: '');
+  TextEditingController dataNascimentoController = TextEditingController(text: '');
   DateTime? dataNascimento;
 
   NivelRepository niveisRepository = NivelRepository();
@@ -29,16 +29,11 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
   int tempoExperiencia = 0;
   AppStorageSevice storage = AppStorageSevice();
   final String CHAVE_DADOS_CADASTRAIS_NOME = 'CHAVE_DADOS_CADASTRAIS_NOME';
-  final String CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO =
-      'CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO';
-  final String CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA =
-      'CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA';
-  final String CHAVE_DADOS_CADASTRAIS_LINGUAGEM =
-      'CHAVE_DADOS_CADASTRAIS_LINGUAGEM';
-  final String CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA =
-      'CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA';
-  final String CHAVE_DADOS_CADASTRAIS_SALARIO =
-      'CHAVE_DADOS_CADASTRAIS_SALARIO';
+  final String CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO = 'CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO';
+  final String CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA = 'CHAVE_DADOS_CADASTRAIS_NIVEL_EXPERIENCIA';
+  final String CHAVE_DADOS_CADASTRAIS_LINGUAGEM = 'CHAVE_DADOS_CADASTRAIS_LINGUAGEM';
+  final String CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA = 'CHAVE_DADOS_CADASTRAIS_TEMPO_EXPERIENCIA';
+  final String CHAVE_DADOS_CADASTRAIS_SALARIO = 'CHAVE_DADOS_CADASTRAIS_SALARIO';
   bool salvando = false;
 
   @override
@@ -52,8 +47,7 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
   carregarDados() async {
     nomeController.text = await storage.getDadosCadastraisNome() ?? '';
 
-    dataNascimentoController.text =
-        await storage.getDadosCadastraisDataNascimento() ?? '';
+    dataNascimentoController.text = await storage.getDadosCadastraisDataNascimento() ?? '';
 
     if (dataNascimentoController.text.isNotEmpty) {
       dataNascimento = DateTime.parse(dataNascimentoController.text);
@@ -158,9 +152,7 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
                       });
                     },
                   ),
-                  TextLabel(
-                      texto:
-                          'Pretenção Salarial. R\$ ${salarioEscolhido.round()}'),
+                  TextLabel(texto: 'Pretenção Salarial. R\$ ${salarioEscolhido.round()}'),
                   Slider(
                       min: 0,
                       max: 10000,
@@ -176,60 +168,47 @@ class _DadosCadastraisState extends State<DadosCadastrais> {
                         salvando = false;
                       });
                       if (nomeController.text.trim().length < 3) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('O Nome deve ser preenchido!'),
                         ));
                         return;
                       }
                       if (dataNascimento == null) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Data de nascimento inválida!'),
                         ));
                         return;
                       }
                       if (nivelSelecionado.trim() == '') {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Text('Selecione um Nivel de experiência!'),
                         ));
                         return;
                       }
                       if (linguagensSelecionadas.isEmpty) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text(
-                              'Deve ser selecionado ao menos uma linguagem!'),
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Deve ser selecionado ao menos uma linguagem!'),
                         ));
                         return;
                       }
                       if (tempoExperiencia == 0) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text(
-                              'Deve ter ao menos um ano de experiência em uma das linguagens'),
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('Deve ter ao menos um ano de experiência em uma das linguagens'),
                         ));
                         return;
                       }
                       if (salarioEscolhido == 0) {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text(
-                              'A pretenção salároa deve ser maior que R\$0'),
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text('A pretenção salároa deve ser maior que R\$0'),
                         ));
                         return;
                       }
 
                       await storage.setDadosCadastraisNome(nomeController.text);
-                      await storage
-                          .setDadosCadastraisDataNascimento(dataNascimento!);
-                      await storage
-                          .setDadosCadastraisNivelExperiencia(nivelSelecionado);
-                      await storage
-                          .setDadosCadastraisLinguagem(linguagensSelecionadas);
-                      await storage
-                          .setDadosCadastraisTempoExperiencia(tempoExperiencia);
+                      await storage.setDadosCadastraisDataNascimento(dataNascimento!);
+                      await storage.setDadosCadastraisNivelExperiencia(nivelSelecionado);
+                      await storage.setDadosCadastraisLinguagem(linguagensSelecionadas);
+                      await storage.setDadosCadastraisTempoExperiencia(tempoExperiencia);
                       await storage.setDadosCadastraisSalario(salarioEscolhido);
 
                       setState(() {

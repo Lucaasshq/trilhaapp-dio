@@ -32,14 +32,11 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
   }
 
   carregarDados() async {
-    storage = await SharedPreferences.getInstance();
-    setState(() {
-      nomeUsuarioController.text = storage.getString(CHAVE_NOME_USUARIO) ?? '';
-      alturaController.text = (storage.getDouble(CHAVE_ALTURA) ?? 0).toString();
-      receberNotificacoes =
-          (storage.getBool(CHAVE_RECEBER_NOTIFICACOES) ?? false);
-      temaEscuro = storage.getBool(CHAVE_TEMA_ESCURO) ?? false;
-    });
+    nomeUsuarioController.text = await storage.getConfiguracoesNomeUsuario();
+    alturaController.text = (await storage.getConfiguracoesAltura()).toString();
+    receberNotificacoes = await storage.getConfiguracoesReceberNotificacoes();
+    temaEscuro = await storage.getConfiguracoesTemaEscuro();
+    setState(() {});
   }
 
   @override
@@ -88,8 +85,7 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                     FocusManager.instance.primaryFocus?.unfocus();
                     //! comando para fechar o teclado
                     try {
-                      await storage.setDouble(
-                          CHAVE_ALTURA, double.parse(alturaController.text));
+                      await storage.setConfiguracoesAltura(double.parse(alturaController.text));
                     } catch (e) {
                       showDialog(
                         context: context,
@@ -97,21 +93,15 @@ class _ConfiguracoesPageState extends State<ConfiguracoesPage> {
                           return AlertDialog(
                             title: const Text('erro'),
                             content: const Text('Altura Invalida'),
-                            actions: [
-                              TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('OK'))
-                            ],
+                            actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('OK'))],
                           );
                         },
                       );
                       return;
                     }
-                    await storage.setString(
-                        CHAVE_NOME_USUARIO, nomeUsuarioController.text);
-                    await storage.setBool(
-                        CHAVE_RECEBER_NOTIFICACOES, receberNotificacoes);
-                    await storage.setBool(CHAVE_TEMA_ESCURO, temaEscuro);
+                    await storage.setConfiguracoesNomeUsuario(nomeUsuarioController.text);
+                    await storage.setConfiguracoesReceberNotificacoes(receberNotificacoes);
+                    await storage.setConfiguracoesTemaEscuro(temaEscuro);
                     Navigator.pop(context);
                   },
                   child: const Text('Salvar'))
