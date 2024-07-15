@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trilhaapp/pages/configuracoes_page.dart';
 import 'package:trilhaapp/pages/dados_cadastrais.dart';
 import 'package:trilhaapp/pages/logins_page.dart';
-import 'package:trilhaapp/pages/numeros_aleatorio_page.dart';
+import 'package:trilhaapp/pages/numeros_aleatorio_page_hive.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -16,8 +16,7 @@ class CustomDrawer extends StatelessWidget {
           InkWell(
             onTap: () {
               showModalBottomSheet(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 context: context,
                 builder: (context) {
                   return Wrap(
@@ -94,19 +93,16 @@ class CustomDrawer extends StatelessWidget {
             ),
             onTap: () => {
               showModalBottomSheet(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                   context: context,
                   builder: (BuildContext bc) {
                     return Container(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                       child: const Column(
                         children: [
                           Text(
                             'Termos de privacidade',
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
                             height: 20,
@@ -156,12 +152,7 @@ class CustomDrawer extends StatelessWidget {
                 ],
               ),
             ),
-            onTap: () => {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => const NumeroAleatoriosPage())))
-            },
+            onTap: () => {Navigator.push(context, MaterialPageRoute(builder: ((context) => const NumeroAleatoriosHivePage())))},
           ),
           const Divider(),
           const SizedBox(
@@ -200,10 +191,7 @@ class CustomDrawer extends StatelessWidget {
                       ),
                       TextButton(
                           onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const LoginPage()));
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                           },
                           child: const Text(
                             'Sim',
