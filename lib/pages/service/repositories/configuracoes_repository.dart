@@ -1,6 +1,5 @@
 import 'package:hive/hive.dart';
-
-import '../../../model/configuracoes_model.dart';
+import 'package:trilhaapp/model/configuracoes_model.dart';
 
 class ConfiguracoesRepository {
   static late Box _box;

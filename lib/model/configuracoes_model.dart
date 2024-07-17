@@ -2,7 +2,7 @@
 
 class ConfiguracoesModel {
   String _nomeUsuario = '';
-  double _altura = 0;
+  double _altura = 0.0;
   bool _receberNotificacoes = false;
   bool _temaEscuro = false;
 
@@ -23,7 +23,7 @@ class ConfiguracoesModel {
   String get nomeUsuario => _nomeUsuario;
 
   set nomeUsuario(String nome) {
-    nomeUsuario = nome;
+    _nomeUsuario = nome;
   }
 
   double get altura => _altura;

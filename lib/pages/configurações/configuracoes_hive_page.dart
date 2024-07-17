@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/configuracoes_model.dart';
 import 'package:trilhaapp/pages/service/repositories/configuracoes_repository.dart';
-import 'package:trilhaapp/services/app_storage.dart';
 
 class ConfiguracoesHivePage extends StatefulWidget {
   const ConfiguracoesHivePage({super.key});
@@ -17,15 +16,6 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
   var configuracoesModel = ConfiguracoesModel.vazio();
   TextEditingController nomeUsuarioController = TextEditingController();
   TextEditingController alturaController = TextEditingController();
-  String? nomeUsuario;
-  double? altura;
-  bool receberNotificacoes = false;
-  bool temaEscuro = false;
-
-  final CHAVE_NOME_USUARIO = 'CHAVE_NOME_USUARIO';
-  final CHAVE_ALTURA = 'CHAVE_ALTURA';
-  final CHAVE_RECEBER_NOTIFICACOES = 'CHAVE_RECEBER_NOTIFICACOES';
-  final CHAVE_TEMA_ESCURO = 'CHAVE_TEMA_ESCURO';
 
   @override
   void initState() {
@@ -36,10 +26,8 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
   carregarDados() async {
     configuracoesRepository = await ConfiguracoesRepository.carregar();
     configuracoesModel = configuracoesRepository.obterDados();
-    nomeUsuarioController.text = await storage.getConfiguracoesNomeUsuario();
-    alturaController.text = (await storage.getConfiguracoesAltura()).toString();
-    receberNotificacoes = await storage.getConfiguracoesReceberNotificacoes();
-    temaEscuro = await storage.getConfiguracoesTemaEscuro();
+    nomeUsuarioController.text = configuracoesModel.nomeUsuario;
+    alturaController.text = configuracoesModel.altura.toString();
     setState(() {});
   }
 
@@ -48,7 +36,7 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Configurações'),
+          title: const Text('Configurações Hive'),
         ),
         body: ListView(
           children: [
@@ -69,18 +57,18 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
             ),
             SwitchListTile(
                 title: const Text('Receber Notifições'),
-                value: receberNotificacoes,
+                value: configuracoesModel.recebernotificacoes,
                 onChanged: (bool value) {
                   setState(() {
-                    receberNotificacoes = value;
+                    configuracoesModel.recebernotificacoes = value;
                   });
                 }),
             SwitchListTile(
                 title: const Text('Tema escuro'),
-                value: temaEscuro,
+                value: configuracoesModel.temaEscuro,
                 onChanged: (bool value) {
                   setState(() {
-                    temaEscuro = value;
+                    configuracoesModel.temaEscuro = value;
                   });
                 }),
             TextButton(
@@ -88,7 +76,7 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
                   FocusManager.instance.primaryFocus?.unfocus();
                   //! comando para fechar o teclado
                   try {
-                    await storage.setConfiguracoesAltura(double.parse(alturaController.text));
+                    configuracoesModel.altura = double.parse(alturaController.text);
                   } catch (e) {
                     showDialog(
                       context: context,
@@ -102,9 +90,8 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
                     );
                     return;
                   }
-                  await storage.setConfiguracoesNomeUsuario(nomeUsuarioController.text);
-                  await storage.setConfiguracoesReceberNotificacoes(receberNotificacoes);
-                  await storage.setConfiguracoesTemaEscuro(temaEscuro);
+                  configuracoesModel.nomeUsuario = nomeUsuarioController.text;
+                  configuracoesRepository.salvar(configuracoesModel);
                   Navigator.pop(context);
                 },
                 child: const Text('Salvar'))

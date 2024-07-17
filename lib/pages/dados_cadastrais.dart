@@ -14,19 +14,19 @@ class DadosCadastrais extends StatefulWidget {
 }
 
 class _DadosCadastraisState extends State<DadosCadastrais> {
-  var sdfsdlfmsdlkfmssgjkfnkgsjdfdfdfdfdfddfdfdfdfdfdfdfdfdfdfdfffffdffdfdf = false;
+  
   TextEditingController nomeController = TextEditingController(text: '');
   TextEditingController dataNascimentoController = TextEditingController(text: '');
   DateTime? dataNascimento;
-
-  NivelRepository niveisRepository = NivelRepository();
-  LinguagensRepository linguagensRepository = LinguagensRepository();
   List<String> niveis = [];
   List<String> linguagens = [];
+  NivelRepository niveisRepository = NivelRepository();
+  LinguagensRepository linguagensRepository = LinguagensRepository();
   var nivelSelecionado = "";
   List<String> linguagensSelecionadas = [];
   double salarioEscolhido = 0.0;
   int tempoExperiencia = 0;
+
   AppStorageSevice storage = AppStorageSevice();
   final String CHAVE_DADOS_CADASTRAIS_NOME = 'CHAVE_DADOS_CADASTRAIS_NOME';
   final String CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO = 'CHAVE_DADOS_CADASTRAIS_DATA_NASCIMENTO';
