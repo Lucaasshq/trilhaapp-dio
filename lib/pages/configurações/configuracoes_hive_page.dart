@@ -1,6 +1,8 @@
 // ignore_for_file: non_constant_identifier_names, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/model/configuracoes_model.dart';
+import 'package:trilhaapp/pages/service/repositories/configuracoes_repository.dart';
 import 'package:trilhaapp/services/app_storage.dart';
 
 class ConfiguracoesHivePage extends StatefulWidget {
@@ -11,7 +13,8 @@ class ConfiguracoesHivePage extends StatefulWidget {
 }
 
 class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
-  AppStorageSevice storage = AppStorageSevice();
+  late ConfiguracoesRepository configuracoesRepository;
+  var configuracoesModel = ConfiguracoesModel.vazio();
   TextEditingController nomeUsuarioController = TextEditingController();
   TextEditingController alturaController = TextEditingController();
   String? nomeUsuario;
@@ -31,6 +34,8 @@ class _ConfiguracoesHivePageState extends State<ConfiguracoesHivePage> {
   }
 
   carregarDados() async {
+    configuracoesRepository = await ConfiguracoesRepository.carregar();
+    configuracoesModel = configuracoesRepository.obterDados();
     nomeUsuarioController.text = await storage.getConfiguracoesNomeUsuario();
     alturaController.text = (await storage.getConfiguracoesAltura()).toString();
     receberNotificacoes = await storage.getConfiguracoesReceberNotificacoes();
