@@ -23,18 +23,11 @@ class DadosCadastraisModel extends HiveObject {
 
   DadosCadastraisModel.vazio() {
     nome = '';
-    dataNascimento = DateTime.now();
+    dataNascimento = null;
     nivelExperiencia = '';
     linguagens = [];
     tempoExperiencia = 0;
     salario = 0;
   }
-  DadosCadastraisModel(
-    this.nome,
-    this.dataNascimento,
-    this.nivelExperiencia,
-    this.linguagens,
-    this.tempoExperiencia,
-    this.salario,
-  );
+  DadosCadastraisModel();
 }
