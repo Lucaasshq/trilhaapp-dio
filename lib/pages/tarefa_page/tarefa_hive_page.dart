@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/tarefa.dart';
 import 'package:trilhaapp/pages/service/repositories/tarefa_repository.dart';
 
-class TarefaPage extends StatefulWidget {
-  const TarefaPage({super.key});
+class TarefaHivePage extends StatefulWidget {
+  const TarefaHivePage({super.key});
 
   @override
-  State<TarefaPage> createState() => _TarefaPageState();
+  State<TarefaHivePage> createState() => _TarefaHivePageState();
 }
 
-class _TarefaPageState extends State<TarefaPage> {
+class _TarefaHivePageState extends State<TarefaHivePage> {
   var tarefaRepository = TarefaRepository();
   var _tarefas = <Tarefa>[];
   TextEditingController descricaoController = TextEditingController();
@@ -45,9 +45,7 @@ class _TarefaPageState extends State<TarefaPage> {
                     title: const Text('Adicionar Tarefa'),
                     content: TextField(
                       controller: descricaoController,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15))),
+                      decoration: InputDecoration(enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(15))),
                     ),
                     actions: [
                       TextButton(
@@ -58,8 +56,7 @@ class _TarefaPageState extends State<TarefaPage> {
                       ),
                       TextButton(
                         onPressed: () async {
-                          await tarefaRepository.adicionar(
-                              Tarefa(descricaoController.text, false));
+                          await tarefaRepository.adicionar(Tarefa(descricaoController.text, false));
                           // ignore: use_build_context_synchronously
                           Navigator.pop(context);
                           setState(() {});
@@ -98,7 +95,6 @@ class _TarefaPageState extends State<TarefaPage> {
                       onDismissed: (DismissDirection direction) async {
                         await tarefaRepository.remove(tarefa.id);
                         obterTarefas();
-                        
                       },
                       child: ListTile(
                         title: Text(tarefa.descricao),

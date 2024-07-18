@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/pages/configura%C3%A7%C3%B5es/configuracoes_hive_page.dart';
-import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_Hive.dart';
+import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/logins_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorio_page_hive.dart';
 
