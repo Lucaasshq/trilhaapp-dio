@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 part 'tarefa_hive_model.g.dart';
 
@@ -7,4 +8,9 @@ class TarefaHiveModel extends HiveObject {
   String descricao = '';
   @HiveField(1)
   bool concluido = false;
+  String id = UniqueKey().toString();
+
+  TarefaHiveModel();
+
+  TarefaHiveModel.criar(this.descricao, this.concluido);
 }

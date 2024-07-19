@@ -173,11 +173,11 @@ class _LoginPageState extends State<LoginPage> {
                             }
                         },
                         style: ButtonStyle(
-                            shape: MaterialStatePropertyAll(
+                            shape: WidgetStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10))),
                             backgroundColor:
-                                const MaterialStatePropertyAll(Colors.purple)),
+                                const WidgetStatePropertyAll(Colors.purple)),
                         child: const Text(
                           'ENTRAR',
                           style: TextStyle(
