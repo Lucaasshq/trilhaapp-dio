@@ -21,7 +21,7 @@ class _TarefaHivePageState extends State<TarefaHivePage> {
     obterTarefas();
   }
 
-  var teste = 'teste';
+  
   void obterTarefas() async {
     if (apenasNaoConcluidos) {
       _tarefas = await tarefaRepository.listarNaoConcluidas();
