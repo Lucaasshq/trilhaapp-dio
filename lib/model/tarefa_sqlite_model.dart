@@ -1,13 +1,15 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
-
-class Tarefa {
-  final String _id = UniqueKey().toString();
+class TarefaSQLiteModel {
+  int _id = 0;
   String _descricao = '';
   bool _concluido = false;
-  Tarefa(this._descricao, this._concluido);
 
-  String get id => _id;
+  TarefaSQLiteModel(this._descricao, this._concluido);
+
+  int get id => _id;
+
+  set id(int id) {
+    _id = id;
+  }
 
   // ignore: unnecessary_getters_setters
   String get descricao => _descricao;
@@ -24,6 +26,4 @@ class Tarefa {
   void set concluido(bool concluido) {
     _concluido = concluido;
   }
-
-  
 }

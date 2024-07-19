@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'dados_cadastrais_model.dart';
+part of 'dados_cadastrais_hive_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-part 'dados_cadastrais_model.g.dart';
+part 'dados_cadastrais_hive_model.g.dart';
 
 @HiveType(typeId: 0)
 class DadosCadastraisModel extends HiveObject {
