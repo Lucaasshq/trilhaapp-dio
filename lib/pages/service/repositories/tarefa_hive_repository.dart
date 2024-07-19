@@ -18,7 +18,18 @@ class TarefaHiveRepository {
     _box.add(tarefaHiveModel);
   }
 
- List<TarefaHiveModel> obterDados() {
+  List<TarefaHiveModel> obterDados(bool naoConcluido) {
+    if (naoConcluido) {
+      return _box.values.cast<TarefaHiveModel>().where((tarefa) => !tarefa.concluido).toList();
+    }
     return _box.values.cast<TarefaHiveModel>().toList();
+  }
+
+  excluir(TarefaHiveModel tarefaHiveModel) {
+    tarefaHiveModel.delete();
+  }
+
+  alterar(TarefaHiveModel tarefaHivelModel) {
+    tarefaHivelModel.save();
   }
 }

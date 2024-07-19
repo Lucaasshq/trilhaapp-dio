@@ -23,11 +23,8 @@ class _TarefaHivePageState extends State<TarefaHivePage> {
 
   void obterTarefas() async {
     tarefaRepository = await TarefaHiveRepository.carregar();
-    /* if (apenasNaoConcluidos) {
-      _tarefas = await tarefaRepository.listarNaoConcluidas();
-    } else { */
-    _tarefas = tarefaRepository.obterDados();
-    /* } */
+
+    _tarefas = tarefaRepository.obterDados(apenasNaoConcluidos);
 
     setState(() {});
   }
@@ -58,8 +55,8 @@ class _TarefaHivePageState extends State<TarefaHivePage> {
                       TextButton(
                         onPressed: () async {
                           await tarefaRepository.salvar(TarefaHiveModel.criar(descricaoController.text, false));
-                          // ignore: use_build_context_synchronously
                           Navigator.pop(context);
+                          obterTarefas();
                           setState(() {});
                         },
                         child: const Text('Salvar'),
@@ -94,7 +91,7 @@ class _TarefaHivePageState extends State<TarefaHivePage> {
                     return Dismissible(
                       key: Key(tarefa.id),
                       onDismissed: (DismissDirection direction) async {
-                        /* await tarefaRepository.remove(tarefa.id); */
+                        await tarefaRepository.excluir(tarefa);
                         obterTarefas();
                       },
                       child: ListTile(
@@ -102,7 +99,8 @@ class _TarefaHivePageState extends State<TarefaHivePage> {
                         trailing: Switch(
                             value: tarefa.concluido,
                             onChanged: (bool value) async {
-                              /*  tarefaRepository.alterar(tarefa.id, value); */
+                              tarefa.concluido = value;
+                              tarefaRepository.alterar(tarefa);
                               obterTarefas();
                             }),
                       ),
