@@ -5,7 +5,7 @@ class TarefaSQLiteModel {
   String _descricao = '';
   bool _concluido = false;
 
-  TarefaSQLiteModel(this._id ,this._descricao, this._concluido);
+  TarefaSQLiteModel(this._id, this._descricao, this._concluido);
 
   int get id => _id;
 
@@ -13,10 +13,8 @@ class TarefaSQLiteModel {
     _id = id;
   }
 
-  
   String get descricao => _descricao;
 
-  
   set descricao(String descricao) {
     _descricao = descricao;
   }

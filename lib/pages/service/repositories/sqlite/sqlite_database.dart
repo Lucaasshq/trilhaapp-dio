@@ -5,9 +5,9 @@ import 'package:path/path.dart' as path;
 class SQLiteDataBase {
   static Database? db;
 
-  Future<Database> obterDataBase() async {
+  Future<Database> get obterDataBase async {
     if (db == null) {
-      return await iniciarBancoDeDados();
+      return await iniciarBancoDeDados;
     } else {
       return db!;
     }
@@ -20,7 +20,7 @@ class SQLiteDataBase {
           concluido INTEGER);'''
   };
 
-  Future<Database> iniciarBancoDeDados() async {
+  Future<Database> get iniciarBancoDeDados async {
     var db = await openDatabase(
       path.join(await getDatabasesPath(), 'database.db'),
       version: scripts.length,
