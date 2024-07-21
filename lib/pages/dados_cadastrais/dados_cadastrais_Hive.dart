@@ -3,12 +3,12 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/model/dados_cadastrais_hive_model.dart';
 import 'package:trilhaapp/pages/service/repositories/dados_cadastrais_repository.dart';
 import 'package:trilhaapp/pages/service/repositories/linguagens_repository.dart';
 import 'package:trilhaapp/pages/service/repositories/nivel_repository.dart';
 import 'package:trilhaapp/shared/widgets/text_label.dart';
 
-import '../../model/dados_cadastrais_model.dart';
 
 class DadosCadastraisHivePage extends StatefulWidget {
   const DadosCadastraisHivePage({super.key});

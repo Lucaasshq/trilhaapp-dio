@@ -6,6 +6,8 @@ import 'package:trilhaapp/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_hive_page.dart';
 import 'package:trilhaapp/shared/widgets/custon_drawer.dart';
 
+import 'tarefa_page/tarefa_sqlite_page.dart';
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -38,7 +40,7 @@ class _MainPageState extends State<MainPage> {
                     posicaoPagina = value;
                   });
                 },
-                children: const [CardPage(), ImageAssestsPage(), ListViewPage(), ListViewHorizontal(), TarefaHivePage()],
+                children: const [CardPage(), ImageAssestsPage(), ListViewPage(), ListViewHorizontal(), TarefaSQLitePage()],
               ),
             ),
             BottomNavigationBar(
