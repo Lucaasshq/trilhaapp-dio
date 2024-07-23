@@ -4,9 +4,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/dados_cadastrais_hive_model.dart';
-import 'package:trilhaapp/pages/service/repositories/dados_cadastrais_repository.dart';
-import 'package:trilhaapp/pages/service/repositories/linguagens_repository.dart';
-import 'package:trilhaapp/pages/service/repositories/nivel_repository.dart';
+import 'package:trilhaapp/pages/repositories/dados_cadastrais_repository.dart';
+import 'package:trilhaapp/pages/repositories/linguagens_repository.dart';
+import 'package:trilhaapp/pages/repositories/nivel_repository.dart';
 import 'package:trilhaapp/shared/widgets/text_label.dart';
 
 

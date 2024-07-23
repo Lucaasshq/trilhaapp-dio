@@ -4,6 +4,7 @@ import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view.dart';
 import 'package:trilhaapp/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_hive_page.dart';
+import 'package:trilhaapp/pages/teste_http.dart';
 import 'package:trilhaapp/shared/widgets/custon_drawer.dart';
 
 import 'tarefa_page/tarefa_sqlite_page.dart';
@@ -40,7 +41,14 @@ class _MainPageState extends State<MainPage> {
                     posicaoPagina = value;
                   });
                 },
-                children: const [CardPage(), ImageAssestsPage(), ListViewPage(), ListViewHorizontal(), TarefaSQLitePage()],
+                children: const [
+                  HttpTestePage(),
+                  CardPage(),
+                  ImageAssestsPage(),
+                  ListViewPage(),
+                  ListViewHorizontal(),
+                  TarefaSQLitePage()
+                ],
               ),
             ),
             BottomNavigationBar(
@@ -50,6 +58,10 @@ class _MainPageState extends State<MainPage> {
                 },
                 currentIndex: posicaoPagina,
                 items: const [
+                  BottomNavigationBarItem(
+                    label: 'HTTP',
+                    icon: Icon(Icons.get_app),
+                  ),
                   BottomNavigationBarItem(
                     label: 'page 1',
                     icon: Icon(Icons.home),
