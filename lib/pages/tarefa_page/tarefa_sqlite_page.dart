@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/tarefa_hive_model.dart';
 import 'package:trilhaapp/model/tarefa_sqlite_model.dart';
-import 'package:trilhaapp/pages/service/repositories/sqlite/tarefa_sqlite_repository.dart';
-import 'package:trilhaapp/pages/service/repositories/tarefa_hive_repository.dart';
+import 'package:trilhaapp/pages/repositories/sqlite/tarefa_sqlite_repository.dart';
+import 'package:trilhaapp/pages/repositories/tarefa_hive_repository.dart';
 
 class TarefaSQLitePage extends StatefulWidget {
   const TarefaSQLitePage({super.key});
