@@ -11,6 +11,9 @@ class ConsultaCEP extends StatefulWidget {
 
 class _ConsultaCEPState extends State<ConsultaCEP> {
   TextEditingController cepController = TextEditingController(text: '');
+  String endereco = '';
+  String cidade = '';
+  String estado = '';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,29 +28,44 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
               ),
               TextField(
                 controller: cepController,
-                onChanged: (cep) {
-                  if (cep != null && cep.trim().length == 8) {}
+                maxLength: 8,
+                keyboardType: TextInputType.number,
+                
+                onChanged: (value) {
+                  var cep = value.replaceAll(RegExp(r'[^0-9]'), '');
+                  print(cep);
+                  if (value.trim().length == 8) {
+                    cidade = 'cidade';
+                    estado = 'estado';
+                    endereco = 'endereço';
+                  } else {
+                    cidade = '';
+                    estado = '';
+                    endereco = '';
+                  }
+                  setState(() {});
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'CEP',
                 ),
               ),
-              TextField(
-                controller: cepController,
-                onChanged: (cep) {
-                  if (cep != null && cep.trim().length == 8) {}
-                },
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'CEP',
-                ),
-              )
+              const SizedBox(
+                height: 50,
+              ),
+              Text(
+                endereco,
+                style: const TextStyle(fontSize: 22),
+              ),
+              Text(
+                '$cidade  $estado',
+                style: const TextStyle(fontSize: 22),
+              ),
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(onPressed: () async {
-          var response = await http.get(Uri.parse('https://www.google.com/lucas'));
+          var response = await http.get(Uri.parse('https://www.google.com'));
           print(response.body);
           print(response.statusCode);
         }),
