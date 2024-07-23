@@ -4,7 +4,7 @@ import 'package:trilhaapp/pages/image_assets.dart';
 import 'package:trilhaapp/pages/list_view.dart';
 import 'package:trilhaapp/pages/list_view_horizontal.dart';
 import 'package:trilhaapp/pages/tarefa_page/tarefa_hive_page.dart';
-import 'package:trilhaapp/pages/teste_http.dart';
+import 'package:trilhaapp/pages/consulta_cep.dart';
 import 'package:trilhaapp/shared/widgets/custon_drawer.dart';
 
 import 'tarefa_page/tarefa_sqlite_page.dart';
@@ -42,7 +42,7 @@ class _MainPageState extends State<MainPage> {
                   });
                 },
                 children: const [
-                  HttpTestePage(),
+                  ConsultaCEP(),
                   CardPage(),
                   ImageAssestsPage(),
                   ListViewPage(),
