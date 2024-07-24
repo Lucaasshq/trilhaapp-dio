@@ -1,4 +1,6 @@
 // ignore_for_file: avoid_unnecessary_containers
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -30,11 +32,12 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
                 controller: cepController,
                 maxLength: 8,
                 keyboardType: TextInputType.number,
-                
-                onChanged: (value) {
+                onChanged: (value) async {
                   var cep = value.replaceAll(RegExp(r'[^0-9]'), '');
-                  print(cep);
                   if (value.trim().length == 8) {
+                    var response = await http.get(Uri.parse('https://viacep.com.br/ws/$cep/json/'));
+                    print(response.body);
+                    print(response.statusCode);
                     cidade = 'cidade';
                     estado = 'estado';
                     endereco = 'endereço';
@@ -67,7 +70,6 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
         floatingActionButton: FloatingActionButton(onPressed: () async {
           var response = await http.get(Uri.parse('https://www.google.com'));
           print(response.body);
-          print(response.statusCode);
         }),
       ),
     );
