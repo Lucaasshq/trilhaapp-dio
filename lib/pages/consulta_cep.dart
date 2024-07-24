@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_unnecessary_containers
 import 'dart:convert';
 
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/model/viacep_model.dart';
+import 'package:trilhaapp/pages/repositories/via_cep_repository.dart';
 
 class ConsultaCEP extends StatefulWidget {
   const ConsultaCEP({super.key});
@@ -13,9 +14,13 @@ class ConsultaCEP extends StatefulWidget {
 
 class _ConsultaCEPState extends State<ConsultaCEP> {
   TextEditingController cepController = TextEditingController(text: '');
+  var viaCepModel = ViaCepModel();
+  var viaCepRepository = ViaCepRepository();
   String endereco = '';
   String cidade = '';
   String estado = '';
+  String SemDados = 'Sem informações';
+  bool loading = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,20 +38,17 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
                 maxLength: 8,
                 keyboardType: TextInputType.number,
                 onChanged: (value) async {
+                  setState(() {
+                    loading = true;
+                  });
                   var cep = value.replaceAll(RegExp(r'[^0-9]'), '');
                   if (value.trim().length == 8) {
-                    var response = await http.get(Uri.parse('https://viacep.com.br/ws/$cep/json/'));
-                    print(response.body);
-                    print(response.statusCode);
-                    cidade = 'cidade';
-                    estado = 'estado';
-                    endereco = 'endereço';
-                  } else {
-                    cidade = '';
-                    estado = '';
-                    endereco = '';
+                    viaCepModel = await viaCepRepository.getCep(cep);
                   }
-                  setState(() {});
+
+                  setState(() {
+                    loading = false;
+                  });
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -56,20 +58,29 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
               const SizedBox(
                 height: 50,
               ),
-              Text(
-                endereco,
-                style: const TextStyle(fontSize: 22),
+              SizedBox(
+                height: 45,
+                child: Text(
+                  "Cidade: ${viaCepModel.localidade ?? ''} ${viaCepModel.uf ?? ''}",
+                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+                ),
               ),
-              Text(
-                '$cidade  $estado',
-                style: const TextStyle(fontSize: 22),
+              SizedBox(
+                height: 45,
+                child: Text(
+                  'Logradouro: ${viaCepModel.logradouro ?? ''}',
+                  style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
+              Visibility(visible: loading, child: const CircularProgressIndicator())
             ],
           ),
         ),
         floatingActionButton: FloatingActionButton(onPressed: () async {
-          var response = await http.get(Uri.parse('https://www.google.com'));
-          print(response.body);
+
         }),
       ),
     );
