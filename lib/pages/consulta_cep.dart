@@ -1,5 +1,4 @@
 // ignore_for_file: avoid_unnecessary_containers
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/viacep_model.dart';
