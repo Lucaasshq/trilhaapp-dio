@@ -1,4 +1,4 @@
-import 'package:trilhaapp/model/card_detail.dart';
+import 'package:trilhaapp/model/card_detail_model.dart';
 
 class CardDetailRepository {
   Future<CardDetail> get() async {

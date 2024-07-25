@@ -4,6 +4,8 @@ import 'package:trilhaapp/pages/dados_cadastrais/dados_cadastrais_hive.dart';
 import 'package:trilhaapp/pages/logins_page.dart';
 import 'package:trilhaapp/pages/numeros_aleatorio_page_hive.dart';
 
+import '../../pages/post_page.dart';
+
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
@@ -136,6 +138,27 @@ class CustomDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => const ConfiguracoesHivePage(),
+                  ))
+            },
+          ),
+          const Divider(),
+          InkWell(
+            child: Container(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              width: double.infinity,
+              child: const Row(
+                children: [
+                  Icon(Icons.post_add),
+                  SizedBox(width: 5),
+                  Text('Post'),
+                ],
+              ),
+            ),
+            onTap: () => {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PostPage(),
                   ))
             },
           ),
