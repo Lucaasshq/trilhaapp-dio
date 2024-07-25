@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/card_detail.dart';
+import '../model/card_detail_model.dart';
 
 class CardDetailPage extends StatelessWidget {
   const CardDetailPage({super.key, required this.cardDetail});
