@@ -1,5 +1,5 @@
+import 'package:trilhaapp/Repositories/database/sqlite/sqlite_database.dart';
 import 'package:trilhaapp/model/tarefa_sqlite_model.dart';
-import 'package:trilhaapp/pages/repositories/sqlite/sqlite_database.dart';
 
 class TarefaSQLiteRepository {
   Future<List<TarefaSQLiteModel>> obterDados(bool apenasNaoConcluidos) async {

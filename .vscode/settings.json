@@ -1,6 +1,5 @@
 {
-  "editor.rulers": [
-
-  ],
-  "dart.lineLength": 130
+  "editor.rulers": [],
+  "dart.lineLength": 130,
+  "cmake.sourceDirectory": "C:/Users/T-GAMER/OneDrive/Documentos/bootCampFlutter_Santander/trilhaapp/windows"
 }

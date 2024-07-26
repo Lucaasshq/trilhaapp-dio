@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/tarefa_hive_model.dart';
-import 'package:trilhaapp/pages/repositories/tarefa_hive_repository.dart';
+import 'package:trilhaapp/Repositories/tarefa_hive_repository.dart';
 
 class TarefaHivePage extends StatefulWidget {
   const TarefaHivePage({super.key});

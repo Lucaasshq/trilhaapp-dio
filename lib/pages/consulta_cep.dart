@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/viacep_model.dart';
-import 'package:trilhaapp/pages/repositories/via_cep_repository.dart';
+import 'package:trilhaapp/Repositories/via_cep_repository.dart';
 
 class ConsultaCEP extends StatefulWidget {
   const ConsultaCEP({super.key});
@@ -15,10 +15,6 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
   TextEditingController cepController = TextEditingController(text: '');
   var viaCepModel = ViaCepModel();
   var viaCepRepository = ViaCepRepository();
-  String endereco = '';
-  String cidade = '';
-  String estado = '';
-  String SemDados = 'Sem informações';
   bool loading = false;
   @override
   Widget build(BuildContext context) {
