@@ -1,8 +1,8 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter/material.dart';
-import 'package:trilhaapp/pages/repositories/linguagens_repository.dart';
-import 'package:trilhaapp/pages/repositories/nivel_repository.dart';
+import 'package:trilhaapp/Repositories/linguagens_repository.dart';
+import 'package:trilhaapp/Repositories/nivel_repository.dart';
 import 'package:trilhaapp/services/app_storage.dart';
 import 'package:trilhaapp/shared/widgets/text_label.dart';
 

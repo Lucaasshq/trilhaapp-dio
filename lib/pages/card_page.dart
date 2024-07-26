@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trilhaapp/model/card_detail_model.dart';
 import 'package:trilhaapp/pages/card_detail_page.dart';
-import 'package:trilhaapp/pages/repositories/card_detail_repository.dart';
+import 'package:trilhaapp/Repositories/card_detail_repository.dart';
 
 class CardPage extends StatefulWidget {
   const CardPage({super.key});
