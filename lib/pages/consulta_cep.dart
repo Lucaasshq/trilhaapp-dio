@@ -15,10 +15,6 @@ class _ConsultaCEPState extends State<ConsultaCEP> {
   TextEditingController cepController = TextEditingController(text: '');
   var viaCepModel = ViaCepModel();
   var viaCepRepository = ViaCepRepository();
-  String endereco = '';
-  String cidade = '';
-  String estado = '';
-  String SemDados = 'Sem informações';
   bool loading = false;
   @override
   Widget build(BuildContext context) {
