@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:trilhaapp/Repositories/post/implements/post_dio_repository.dart';
+import 'package:trilhaapp/Repositories/post/posts_repository.dart';
 import 'package:trilhaapp/model/post_model.dart';
 import 'package:trilhaapp/pages/comments_page.dart';
 import 'package:trilhaapp/Repositories/post/implements/post_http_repository.dart';
@@ -11,7 +13,7 @@ class PostPage extends StatefulWidget {
 }
 
 class _PostPageState extends State<PostPage> {
-  PostHttpRepository postRepository = PostHttpRepository();
+  PostsRepository postRepository = PostDioRepository();
   var posts = <PostModel>[];
   @override
   void initState() {
